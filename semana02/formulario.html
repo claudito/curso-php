@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!-- óú Ñ -->
+	<title>Formulario</title>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+	
+<h1>Datos</h1> <hr>
+
+<!-- submit -->
+<form id="agregar" >
+	
+<label>Nombres</label>
+<input type="text" name="nombres" required>
+
+<button>Enviar</button>
+
+</form>
+
+<script>
+	
+$(document).on('submit','#agregar',function (e){
+
+  var parametros = $(this).serialize();
+
+  //alert(parametros);
+
+  //envío por ajax
+  //type:GET(no encriptada), POST(encriptda)
+  //Estados=>beforeSend,success
+  $.ajax({
+  
+   url  : "procesar.php",
+   type : "POST",
+   data : parametros,
+   beforeSend:function(){
+
+   
+
+   },
+   success:function(){
+
+
+
+   }
+ 
+
+
+
+
+  });
+
+
+
+e.preventDefault();
+});
+
+
+
+</script>
+</body>
+</html>
