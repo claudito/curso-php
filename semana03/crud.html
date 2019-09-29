@@ -104,7 +104,11 @@ $('#consulta').DataTable({
 { mData: "fecha_nacimiento"},
 { mdata: null,render:function(data){
 
- return '';
+ acciones  = '<button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>';
+
+ acciones += ' <button class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
+
+ return acciones;
 
 
 }}
