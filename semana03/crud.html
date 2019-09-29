@@ -92,8 +92,8 @@
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary btn-submit">Save changes</button>
       </div>
     </div>
   </div>
@@ -163,11 +163,23 @@ loadData();
 //Cargar Modal Agregar
 $(document).on('click','.btn-agregar',function(){
 
-
+ $('.btn-submit').html('Agregar');
+ $('.modal-title').html('Agregar');
  $('#modal-registrar').modal('show');
 
 
 });
+
+//Cargar Modal Editar
+$(document).on('click','.btn-editar',function(){
+
+ $('.btn-submit').html('Actualizar');
+ $('.modal-title').html('Actualizar');
+ $('#modal-registrar').modal('show');
+
+
+});
+
 
 
 
