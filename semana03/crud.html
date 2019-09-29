@@ -23,6 +23,10 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
 
@@ -32,6 +36,10 @@
 
 <div class="col-sm-12">
 	
+
+<button class="btn btn-primary"><i class="fa fa-plus"></i>  Agregar</button> <hr>
+
+
 <div class="table-responsive">
 
 <table id="consulta" class="table" >
@@ -44,6 +52,7 @@
 <th>Nombres</th>
 <th>Apellidos</th>
 <th>Fecha de Nacimiento</th>
+<th>Acciones</th>
 
 </tr>
 
@@ -92,7 +101,13 @@ $('#consulta').DataTable({
 { mData: "codigo"},
 { mData: "nombres"},
 { mData: "apellidos"},
-{ mData: "fecha_nacimiento"}
+{ mData: "fecha_nacimiento"},
+{ mdata: null,render:function(data){
+
+ return '';
+
+
+}}
 
 
 ]
