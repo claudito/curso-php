@@ -96,6 +96,11 @@
         </button>
       </div>
       <div class="modal-body">
+      
+
+      <input type="hidden" name="codigo" class="codigo">
+      <input type="hidden" name="accion" class="accion">
+
        
       <div class="form-group">
       <label>Nombres</label>
@@ -186,6 +191,9 @@ loadData();
 //Cargar Modal Agregar
 $(document).on('click','.btn-agregar',function(){
 
+ $('#registrar')[0].reset();
+ $('.accion').val('agregar');
+
  $('.btn-submit').html('Agregar');
  $('.modal-title').html('Agregar');
  $('#modal-registrar').modal('show');
@@ -196,6 +204,9 @@ $(document).on('click','.btn-agregar',function(){
 //Cargar Modal Editar
 $(document).on('click','.btn-editar',function(){
 
+$('#registrar')[0].reset();
+ $('.accion').val('editar');
+
 codigo           = $(this).data('codigo');
 nombres          = $(this).data('nombres');
 apellidos        = $(this).data('apellidos');
@@ -204,6 +215,7 @@ fecha_nacimiento = $(this).data('fecha_nacimiento');
 $('.nombres').val(nombres);
 $('.apellidos').val(apellidos);
 $('.fecha_nacimiento').val(fecha_nacimiento);
+$('.codigo').val(codigo);
 
 
  $('.btn-submit').html('Actualizar');
