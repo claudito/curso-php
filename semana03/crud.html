@@ -196,6 +196,16 @@ $(document).on('click','.btn-agregar',function(){
 //Cargar Modal Editar
 $(document).on('click','.btn-editar',function(){
 
+codigo           = $(this).data('codigo');
+nombres          = $(this).data('nombres');
+apellidos        = $(this).data('apellidos');
+fecha_nacimiento = $(this).data('fecha_nacimiento');
+
+$('.nombres').val(nombres);
+$('.apellidos').val(apellidos);
+$('.fecha_nacimiento').val(fecha_nacimiento);
+
+
  $('.btn-submit').html('Actualizar');
  $('.modal-title').html('Actualizar');
  $('#modal-registrar').modal('show');
