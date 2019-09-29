@@ -37,7 +37,7 @@
 <div class="col-sm-12">
 	
 
-<button class="btn btn-primary"><i class="fa fa-plus"></i>  Agregar</button> <hr>
+<button class="btn btn-primary btn-agregar"><i class="fa fa-plus"></i>  Agregar</button> <hr>
 
 
 <div class="table-responsive">
@@ -76,6 +76,34 @@
 </div>
 
 
+<!-- Modal Registrar(Agregar/Actualizar) -->
+<form id="registrar" autocomplete="off">
+	
+<div class="modal fade" id="modal-registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</form>
+
+
 <script>
 	
 function loadData(){
@@ -104,9 +132,9 @@ $('#consulta').DataTable({
 { mData: "fecha_nacimiento"},
 { mdata: null,render:function(data){
 
- acciones  = '<button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>';
+ acciones  = '<button class="btn btn-info btn-sm btn-editar"><i class="fa fa-edit"></i></button>';
 
- acciones += ' <button class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
+ acciones += ' <button class="btn btn-danger btn-sm btn-eliminar" ><i class="fa fa-trash"></i></button>';
 
  return acciones;
 
@@ -131,6 +159,17 @@ $('#consulta').DataTable({
 }
 
 loadData();
+
+//Cargar Modal Agregar
+$(document).on('click','.btn-agregar',function(){
+
+
+ $('#modal-registrar').modal('show');
+
+
+});
+
+
 
 </script>
 </body>
