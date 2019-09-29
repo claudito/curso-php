@@ -18,8 +18,79 @@
 <form id="agregar" >
 	
 <label>Nombres</label>
-<input type="text" name="nombres" required>
+<input type="text" name="nombres" required value="LUIS">
 
+<br>
+
+<label>Apellidos</label>
+<input type="text" name="apellidos" required value="CLAUDIO">
+
+<br>
+<label>Edad</label>
+<input type="number" name="edad" required min="18" value="18">
+
+<br>
+<label>Talla</label>
+<input type="number" name="talla" required step="any" min="0" value="1.79">
+
+<br>
+<label >Fecha de Ingreso</label>
+<input type="date" name="fecha" required value="2019-09-15">
+
+<br>
+
+<label >Hora</label>
+<input type="time" name="hora" required value="15:48">
+
+<br>
+
+<label >Mes</label>
+<input type="month" name="mes" required value="2019-09">
+
+<br>
+
+<label >Semana</label>
+<input type="week" name="semana" required value="2019-W20">
+
+<br>
+<label>Fecha y Hora</label>
+<input type="datetime-local" name="fecha_hora" required value="2019-09-15T15:39">
+
+<hr>
+
+<label >Lista de Colores</label>
+<select name="color" required>
+<option value="">Seleccionar</option>
+<option value="1">Azul</option>
+<option value="2" >Rojo</option>
+<option value="3" selected>Verde</option>
+
+</select>
+
+<br>
+
+<label>Turno</label>
+<input type="radio" name="turno" value="M" required>Mañana
+<input type="radio" name="turno" value="T" required >Tarde
+<input type="radio" name="turno" value="N" required checked>Noche
+
+<br>
+<label>Lenguajes de Programación</label>
+<input type="checkbox" name="lenguaje[]"  value="1">PHP
+<input type="checkbox" name="lenguaje[]"  value="2">JAVA
+<input type="checkbox" name="lenguaje[]"  value="3">C#
+
+<br>
+
+<label>Archivo</label>
+<input type="file" name="archivo">
+
+<br>
+
+<label>Comentario</label>
+<textarea name="comentario"  cols="30" rows="10" placeholder="Ingrese un comentario"></textarea>
+
+<br>
 <button>Enviar</button>
 
 </form>
@@ -28,7 +99,7 @@
 	
 $(document).on('submit','#agregar',function (e){
 
-  var parametros = $(this).serialize();
+ // var parametros = $(this).serialize();
 
   //alert(parametros);
 
@@ -39,7 +110,11 @@ $(document).on('submit','#agregar',function (e){
   
    url  : "procesar.php",
    type : "POST",
-   data : parametros,
+  // data : parametros,
+	data: new FormData(this),
+	contentType: false,
+	cache: false,
+	processData:false,
    beforeSend:function(){
 
    

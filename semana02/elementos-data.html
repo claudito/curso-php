@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Elemento - Data</title>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+
+
+<h1>Elemento  - Data</h1>
+
+
+<a class="datos" 
+
+data-nombres   ="Luis Augusto"
+
+data-apellidos = "Claudio Ponce"
+
+data-edad      = "29"
+
+
+>Luis Augusto Claudio Ponce</a>
+
+
+<script>
+	
+$(document).on('click','.datos',function(e){
+
+var nombres   = $(this).data('nombres'); 
+
+var apellidos = $(this).data('apellidos'); 
+
+var edad      = $(this).data('edad'); 
+
+parametros   = {'nombres':nombres,'apellidos':apellidos,'edad':edad};
+
+
+$.ajax({
+
+
+url:'procesar.php',
+type:'POST',
+data:parametros,
+beforeSend:function(){
+
+
+
+
+},
+success:function(){
+
+
+
+}
+
+
+
+
+});
+
+
+
+
+e.preventDefault();
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>
