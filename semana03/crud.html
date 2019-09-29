@@ -75,11 +75,15 @@ $(document).ready(function (){
 
 $('#consulta').DataTable({
 
+
+"iDisplayLength":50,
+"bAutoWidth":false,
 "language":{
 
 "url":"https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 
 },
+
 "deferRender":true,
 "bProcessing":true,
 "sAjaxSource":"source.php",
