@@ -39,7 +39,20 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 //var_dump($result);
 
 //JSON
-$json  = array("data"=>$result); 
+//$json  = array("data"=>$result); 
+
+
+$json = array(
+
+'sEcho'               => 1,
+'iTotalRecords'       =>count($result),
+'iTotalDisplayRecords'=>count($result),
+'aaData'              =>$result
+
+
+);
+
+
 
 echo json_encode($json);
 
