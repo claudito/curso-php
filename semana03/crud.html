@@ -79,7 +79,21 @@ $('#consulta').DataTable({
 
 "url":"https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 
-}
+},
+"deferRender":true,
+"bProcessing":true,
+"sAjaxSource":"source.php",
+"aoColumns":[
+
+{ mData: "codigo"},
+{ mData: "nombres"},
+{ mData: "apellidos"},
+{ mData: "fecha_nacimiento"}
+
+
+]
+
+
 
 
 
