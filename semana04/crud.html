@@ -157,7 +157,7 @@ $(document).ready(function (){
 
 $('#consulta').DataTable({
 
-
+"destroy":true,
 "iDisplayLength":50,
 "bAutoWidth":false,
 "language":{
@@ -316,6 +316,9 @@ showConfirmButton:false
 },
 success:function(data){
 
+
+loadData();
+ $('#modal-registrar').modal('hide');
 
 swal({
 
