@@ -126,7 +126,57 @@ echo json_encode($json);
 
 		break;
 	case 3:
-		# code...
+	
+    try {
+   
+    $codigo              = $_REQUEST['codigo'];
+	$nombres             = $_REQUEST['nombres'];
+	$apellidos           = $_REQUEST['apellidos'];
+	$fecha_nacimiento    = $_REQUEST['fecha_nacimiento'];
+
+
+	$query     =  "UPDATE alumno  SET
+    nombres          =:nombres,
+    apellidos        =:apellidos,
+    fecha_nacimiento = :fecha_nacimiento
+    
+    WHERE codigo=:codigo";
+	$statement = $conexion->prepare($query);
+    $statement->bindParam(':nombres',$nombres);
+    $statement->bindParam(':apellidos',$apellidos);
+    $statement->bindParam(':fecha_nacimiento',$fecha_nacimiento);
+    $statement->bindParam(':codigo',$codigo);
+    $statement->execute();
+
+
+     echo  json_encode(array(
+
+    'title'=>'Buen Trabajo',
+    'text' =>'Registro Actualizado',
+    'type' =>'success'
+
+    ));
+
+
+
+    } catch (Exception $e) {
+    	
+
+    echo  json_encode(array(
+
+    'title'=>'Error',
+    'text' =>$e->getMessage(),
+    'type' =>'error'
+
+    ));
+
+
+
+
+    }
+
+
+
 		break;
 	case 4:
 		# code...
