@@ -51,6 +51,23 @@
 
 <div class="card-header">
 
+<form id="busqueda" autocomplete="off" class="form-inline">
+  
+<input type="date" name="fechaini" class="form-control fechaini" required>
+
+<input type="date" name="fechafin" class="form-control fechafin" required>
+
+<button class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+</form>
+
+
+
+</div>
+
+
+<div class="card-header">
+
 Alumnos
 
 <div class="float-right">
@@ -399,6 +416,19 @@ showConfirmButton:false
 
 e.preventDefault();
 });
+
+
+//Búsqueda
+$(document).on('submit','#busqueda',function(e){
+
+fechaini = $('.fechaini').val();
+fechafin = $('.fechafin').val();
+
+
+
+
+e.preventDefault();
+})
 
 
 
