@@ -167,6 +167,8 @@ Alumnos
 
 
 <script>
+
+
 	
 function loadData(fechaini,fechafin){
 
@@ -191,7 +193,7 @@ $('#consulta').DataTable({
 aoData.push(
 
   {"name":"fechaini","value":fechaini},
-  {"name":"fechafin","value":fechafin}
+  {"name":"fechafin","value":fechafin}  
 
   );
 
@@ -231,7 +233,21 @@ aoData.push(
 
 }
 
-loadData();
+//loadData();
+
+//Cargar Fechas
+$.getJSON('source.php?op=6',{},function(data){
+
+$('.fechaini').val(data.fechaini);
+$('.fechafin').val(data.fechafin);
+
+loadData(data.fechaini,data.fechafin);
+
+
+});
+
+
+
 
 //Cargar Modal Agregar
 $(document).on('click','.btn-agregar',function(){
@@ -296,6 +312,9 @@ type => [error,success,info,warning]
 
 codigo = $(this).data('codigo');
 
+fechaini = $('.fechaini').val();
+fechafin = $('.fechafin').val();
+
 
 swal({
 
@@ -334,7 +353,7 @@ showConfirmButton:false
  success:function(data){
 
 
- loadData();
+ loadData(fechaini,fechafin);
 
   swal({
 
@@ -375,6 +394,10 @@ parametros = $(this).serialize();
 
 accion    = $('.accion').val();
 
+fechaini = $('.fechaini').val();
+fechafin = $('.fechafin').val();
+
+
 
 $.ajax({
 
@@ -398,7 +421,7 @@ showConfirmButton:false
 success:function(data){
 
 
-loadData();
+loadData(fechaini,fechafin);
  $('#modal-registrar').modal('hide');
 
 swal({
@@ -436,7 +459,7 @@ fechaini = $('.fechaini').val();
 fechafin = $('.fechafin').val();
 
 
-
+loadData(fechaini,fechafin);
 
 e.preventDefault();
 })

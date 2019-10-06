@@ -25,6 +25,10 @@ switch ($opcion) {
 
     try {
 
+$fechaini = $_REQUEST['fechaini'];
+$fechafin = $_REQUEST['fechafin'];
+
+
     //CONSULTA
 $query = "SELECT 
 
@@ -33,10 +37,12 @@ nombres,
 apellidos,
 DATE_FORMAT(fecha_nacimiento,'%d/%m/%Y')fecha_nacimiento 
 
-FROM alumno";
+FROM alumno WHERE  fecha_nacimiento BETWEEN :fechaini AND :fechafin";
 
 //Sentencia Preparada
 $statement = $conexion->prepare($query);
+$statement->bindParam(':fechaini',$fechaini);
+$statement->bindParam(':fechafin',$fechafin);
 //Ejecutar
 $statement->execute();
 
@@ -254,6 +260,33 @@ echo json_encode($json);
 
 
 		break;
+
+
+    case  6:
+   
+   $year = date('Y');
+
+   $fechaini = "1990-01-01";
+   $fechafin = $year."-12-31";
+
+   echo json_encode(
+
+   array(
+    
+   'fechaini'=>$fechaini,
+   'fechafin'=>$fechafin
+
+
+   )
+
+   );
+
+
+
+
+
+    break;
+
 	
 	default:
 	echo "opción no disponible";
