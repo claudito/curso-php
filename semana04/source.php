@@ -1,12 +1,31 @@
 <?php 
 
-try {
-	
-//ó Ñ ü
-//CONFIGURACIÓN
+include'modelo/Conexion.php';
+
+$conexion = new Conexion();
+$conexion = $conexion->get_conexion();
+
+/*
+
+Opciones
+
+1 = Consulta de toda la tabla
+2 = Agregar Datos
+3 = Actualizar Datos
+4 = Eliminar Datos
+5 = Consulta un dato o fila
+
+*/
+
+$opcion = $_REQUEST['op'];
 
 
-//CONSULTA
+switch ($opcion) {
+	case 1:
+
+    try {
+
+    //CONSULTA
 $query = "SELECT 
 
 codigo,
@@ -42,11 +61,35 @@ $json = array(
 
 echo json_encode($json);
 
-} catch (Exception $e) {
 
- echo "Error: ".$e->getMessage();
+    } catch (Exception $e) {
 
+
+    echo "Error: ".$e->getMessage();
+
+    	
+    }
+
+
+
+		break;
+	case 2:
+		# code...
+		break;
+	case 3:
+		# code...
+		break;
+	case 4:
+		# code...
+		break;
+
+	case 5:
+		# code...
+		break;
 	
+	default:
+	echo "opción no disponible";
+		break;
 }
 
 
