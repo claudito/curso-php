@@ -295,10 +295,50 @@ parametros = $(this).serialize();
 accion    = $('.accion').val();
 
 
-url  = "source.php?op="+accion;
+$.ajax({
+
+url:"source.php?op="+accion,
+type:"POST",
+data:parametros,
+dataType:"JSON",
+beforeSend:function(){
+
+swal({
+
+title:"Cargando...",
+text :"Espere un momento, no cierre la ventana",
+imageUrl:"img/loader2.gif",
+showConfirmButton:false
+
+});
 
 
-alert(url);
+},
+success:function(data){
+
+
+swal({
+
+title:data.title,
+text :data.text,
+type :data.type,
+timer:3000,
+showConfirmButton:false
+
+});
+
+
+
+
+}
+
+
+
+
+});
+
+
+
 
 
 e.preventDefault();

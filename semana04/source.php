@@ -82,7 +82,7 @@ echo json_encode($json);
     $fecha_nacimiento    = $_REQUEST['fecha_nacimiento'];
 
 
-    $query     = "INSERT INTO alumnos
+    $query     = "INSERT INTO alumno
                  (
                  nombres,
                  apellidos,
@@ -100,17 +100,29 @@ echo json_encode($json);
     $statement->bindParam(':fecha_nacimiento',$fecha_nacimiento);
     $statement->execute();
 
+    echo  json_encode(array(
+
+    'title'=>'Buen Trabajo',
+    'text' =>'Registro Agregado',
+    'type' =>'success'
+
+    ));
+
 
 
     } catch (Exception $e) {
 
 
+    echo  json_encode(array(
 
+    'title'=>'Error',
+    'text' =>$e->getMessage(),
+    'type' =>'error'
+
+    ));
 
     	
     }
-
-
 
 		break;
 	case 3:
