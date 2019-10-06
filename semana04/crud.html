@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Crud</title>
+
+
+ <!-- Bootstrap 4 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+	
+<div class="row">
+
+<div class="col-sm-12">
+	
+
+
+
+
+<div class="card">
+
+<div class="card-header">
+
+Usuarios
+
+<div class="float-right">
+<button class="btn btn-primary btn-agregar btn-sm"><i class="fa fa-plus"></i>  Agregar</button> 
+</div>
+
+</div>
+
+<div class="card-body">
+
+<div class="table-responsive">
+
+<table id="consulta" class="table" >
+	
+<thead>
+	
+<tr>
+	
+<th>Código</th>
+<th>Nombres</th>
+<th>Apellidos</th>
+<th>Fecha de Nacimiento</th>
+<th>Acciones</th>
+
+</tr>
+
+
+</thead>
+
+
+</table>
+	
+
+</div> 
+
+</div>
+
+</div>
+
+
+</div>
+
+	
+
+</div>
+
+</div>
+
+
+<!-- Modal Registrar(Agregar/Actualizar) -->
+<form id="registrar" autocomplete="off">
+	
+<div class="modal fade" id="modal-registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+
+      <input type="hidden" name="codigo" class="codigo">
+      <input type="hidden" name="accion" class="accion">
+
+       
+      <div class="form-group">
+      <label>Nombres</label>
+      <input type="text" name="nombres" class="form-control nombres">
+      </div>
+
+      <div class="form-group">
+      <label>Apellidos</label>
+      <input type="text" name="apellidos" class="form-control apellidos">
+      </div>
+
+      <div class="form-group">
+      <label>Fecha de Nacimiento</label>
+      <input type="date" name="fecha_nacimiento" class="form-control fecha_nacimiento">
+      </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary btn-submit">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</form>
+
+
+<script>
+	
+function loadData(){
+
+$(document).ready(function (){
+
+$('#consulta').DataTable({
+
+
+"iDisplayLength":50,
+"bAutoWidth":false,
+"language":{
+
+"url":"https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+
+},
+
+"deferRender":true,
+"bProcessing":true,
+"sAjaxSource":"source.php",
+"aoColumns":[
+
+{ mData: "codigo"},
+{ mData: "nombres"},
+{ mData: "apellidos"},
+{ mData: "fecha_nacimiento"},
+{ mData: null,render:function(data){
+
+ acciones  = '<button class="btn btn-info btn-sm btn-editar" data-codigo="'+data.codigo+'" data-nombres="'+data.nombres+'" data-apellidos="'+data.apellidos+'" data-fecha_nacimiento="'+data.fecha_nacimiento+'"><i class="fa fa-edit"></i></button>';
+
+ acciones += ' <button class="btn btn-danger btn-sm btn-eliminar" ><i class="fa fa-trash"></i></button>';
+
+ return acciones;
+
+
+}}
+
+
+]
+
+
+
+
+
+});
+
+
+
+});
+
+
+
+}
+
+loadData();
+
+//Cargar Modal Agregar
+$(document).on('click','.btn-agregar',function(){
+
+ $('#registrar')[0].reset();
+ $('.accion').val('agregar');
+
+ $('.btn-submit').html('Agregar');
+ $('.modal-title').html('Agregar');
+ $('#modal-registrar').modal('show');
+
+
+});
+
+//Cargar Modal Editar
+$(document).on('click','.btn-editar',function(){
+
+$('#registrar')[0].reset();
+ $('.accion').val('editar');
+
+codigo           = $(this).data('codigo');
+nombres          = $(this).data('nombres');
+apellidos        = $(this).data('apellidos');
+fecha_nacimiento = $(this).data('fecha_nacimiento');
+
+$('.nombres').val(nombres);
+$('.apellidos').val(apellidos);
+$('.fecha_nacimiento').val(fecha_nacimiento);
+$('.codigo').val(codigo);
+
+
+ $('.btn-submit').html('Actualizar');
+ $('.modal-title').html('Actualizar');
+ $('#modal-registrar').modal('show');
+
+
+});
+
+//Cargar Modal Eliminar
+$(document).on('click','.btn-eliminar',function(){
+
+/*
+
+type => [error,success,info,warning]
+
+*/
+
+swal({
+
+  title: "¿Estás Seguro?",
+  text: "El registro se eliminará de manera permanente",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonClass: "btn-danger",
+  confirmButtonText: "Si, estoy seguro",
+  cancelButtonText : "Cancelar",
+  closeOnConfirm: false
+},
+function(){
+
+
+  //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+
+    swal({
+
+     title : 'Buen Trabajo',
+     text  : 'Registro Eliminado',
+     type  : 'success',
+     timer : 3000,
+     showConfirmButton:false
+
+
+    });
+
+
+
+});
+
+
+
+});
+
+
+
+</script>
+</body>
+</html>
