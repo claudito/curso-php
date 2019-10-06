@@ -209,7 +209,7 @@ loadData();
 $(document).on('click','.btn-agregar',function(){
 
  $('#registrar')[0].reset();
- $('.accion').val('agregar');
+ $('.accion').val('2');
 
  $('.btn-submit').html('Agregar');
  $('.modal-title').html('Agregar');
@@ -222,7 +222,7 @@ $(document).on('click','.btn-agregar',function(){
 $(document).on('click','.btn-editar',function(){
 
 $('#registrar')[0].reset();
- $('.accion').val('editar');
+ $('.accion').val('3');
 
 codigo           = $(this).data('codigo');
 nombres          = $(this).data('nombres');
@@ -284,6 +284,24 @@ function(){
 
 
 
+});
+
+
+//Agregar / Actualizar
+$(document).on('submit','#registrar',function(e){
+
+parametros = $(this).serialize();
+
+accion    = $('.accion').val();
+
+
+url  = "source.php?op="+accion;
+
+
+alert(url);
+
+
+e.preventDefault();
 });
 
 

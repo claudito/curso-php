@@ -101,9 +101,6 @@ echo json_encode($json);
     $statement->execute();
 
 
-    
-         
-
 
     } catch (Exception $e) {
 
