@@ -168,7 +168,7 @@ Alumnos
 
 <script>
 	
-function loadData(){
+function loadData(fechaini,fechafin){
 
 $(document).ready(function (){
 
@@ -190,9 +190,8 @@ $('#consulta').DataTable({
 
 aoData.push(
 
-  {"name":"fechaini":"value":fechaini},
-  {"name":"fechafin":"value":fechafin}
-
+  {"name":"fechaini","value":fechaini},
+  {"name":"fechafin","value":fechafin}
 
   );
 
