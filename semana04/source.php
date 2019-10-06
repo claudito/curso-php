@@ -179,7 +179,44 @@ echo json_encode($json);
 
 		break;
 	case 4:
-		# code...
+	
+    try {
+
+
+    $codigo    = $_REQUEST['codigo'];
+
+    $query     = "DELETE FROM alumno WHERE codigo=:codigo";
+	$statement = $conexion->prepare($query);
+    $statement->bindParam(':codigo',$codigo);
+    $statement->execute();
+
+     echo  json_encode(array(
+
+    'title'=>'Buen Trabajo',
+    'text' =>'Registro Eliminado',
+    'type' =>'success'
+
+    ));
+    	
+
+    } catch (Exception $e) {
+    	
+    
+    echo  json_encode(array(
+
+    'title'=>'Error',
+    'text' =>$e->getMessage(),
+    'type' =>'error'
+
+    ));
+
+
+
+
+    }
+
+
+
 		break;
 
 	case 5:

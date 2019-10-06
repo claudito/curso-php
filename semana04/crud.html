@@ -179,7 +179,7 @@ $('#consulta').DataTable({
 
  acciones  = '<button class="btn btn-info btn-sm btn-editar" data-codigo="'+data.codigo+'" data-nombres="'+data.nombres+'" data-apellidos="'+data.apellidos+'" data-fecha_nacimiento="'+data.fecha_nacimiento+'"><i class="fa fa-edit"></i></button>';
 
- acciones += ' <button class="btn btn-danger btn-sm btn-eliminar" ><i class="fa fa-trash"></i></button>';
+ acciones += ' <button class="btn btn-danger btn-sm btn-eliminar"  data-codigo="'+data.codigo+'"><i class="fa fa-trash"></i></button>';
 
  return acciones;
 
@@ -251,6 +251,9 @@ type => [error,success,info,warning]
 
 */
 
+codigo = $(this).data('codigo');
+
+
 swal({
 
   title: "¿Estás Seguro?",
@@ -264,20 +267,55 @@ swal({
 },
 function(){
 
+ 
+$.ajax({
 
-  //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+ url:"source.php?op=4",
+ type:"POST",
+ data:{'codigo':codigo},
+ dataType:'JSON',
+ beforeSend:function(){
 
-    swal({
 
-     title : 'Buen Trabajo',
-     text  : 'Registro Eliminado',
-     type  : 'success',
+swal({
+
+title:"Cargando...",
+text :"Espere un momento, no cierre la ventana",
+imageUrl:"img/loader2.gif",
+showConfirmButton:false
+
+});
+
+
+ },
+ success:function(data){
+
+
+ loadData();
+
+  swal({
+
+     title : data.title,
+     text  : data.text,
+     type  : data.type,
      timer : 3000,
      showConfirmButton:false
 
 
     });
 
+
+
+
+ }
+
+
+
+
+});
+
+
+  
 
 
 });
