@@ -31,7 +31,9 @@ $query = "SELECT
 codigo,
 nombres,
 apellidos,
-fecha_nacimiento FROM alumno";
+DATE_FORMAT(fecha_nacimiento,'%d/%m/%Y')fecha_nacimiento 
+
+FROM alumno";
 
 //Sentencia Preparada
 $statement = $conexion->prepare($query);
@@ -220,7 +222,37 @@ echo json_encode($json);
 		break;
 
 	case 5:
-		# code...
+	
+    try {
+
+
+    $codigo = $_REQUEST['codigo'];
+
+	$query = "SELECT 
+
+	codigo,
+	nombres,
+	apellidos,
+	fecha_nacimiento FROM alumno WHERE codigo=:codigo";
+
+	$statement = $conexion->prepare($query);
+	$statement->bindParam(':codigo',$codigo);
+	$statement->execute();
+	$result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    echo json_encode($result);
+
+
+    } catch (Exception $e) {
+    	
+
+    echo "Error: ".$e->getMessage();
+
+
+    }
+
+
+
 		break;
 	
 	default:
