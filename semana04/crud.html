@@ -186,6 +186,18 @@ $('#consulta').DataTable({
 "deferRender":true,
 "bProcessing":true,
 "sAjaxSource":"source.php?op=1",
+"fnServerParams":function (aoData){
+
+aoData.push(
+
+  {"name":"fechaini":"value":fechaini},
+  {"name":"fechafin":"value":fechafin}
+
+
+  );
+
+
+},
 "aoColumns":[
 
 { mData: "codigo"},
