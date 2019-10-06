@@ -74,7 +74,47 @@ echo json_encode($json);
 
 		break;
 	case 2:
-		# code...
+	
+    try {
+     
+    $nombres             = $_REQUEST['nombres'];
+    $apellidos           = $_REQUEST['apellidos'];
+    $fecha_nacimiento    = $_REQUEST['fecha_nacimiento'];
+
+
+    $query     = "INSERT INTO alumnos
+                 (
+                 nombres,
+                 apellidos,
+                 fecha_nacimiento
+                 )
+                 VALUES
+                 (
+                 :nombres,
+                 :apellidos,
+                 :fecha_nacimiento
+                 )";
+    $statement = $conexion->prepare($query);
+    $statement->bindParam(':nombres',$nombres);
+    $statement->bindParam(':apellidos',$apellidos);
+    $statement->bindParam(':fecha_nacimiento',$fecha_nacimiento);
+    $statement->execute();
+
+
+    
+         
+
+
+    } catch (Exception $e) {
+
+
+
+
+    	
+    }
+
+
+
 		break;
 	case 3:
 		# code...
