@@ -11,6 +11,23 @@ public function agregar($id,$name,$position,$salary,$start_date,$office,$extn){
  	
  
  $conexion = $this->get_conexion();
+
+ $query      =  "SELECT * FROM empleado WHERE id=:id";
+ $statement  =  $conexion->prepare($query);
+ $statement->bindParam(':id',$id);
+ $statement->execute();
+
+ $result  = $statement->fetchAll(PDO::FETCH_ASSOC);
+  
+ if(count($result)>0)
+ {
+  
+  echo "existe";
+
+ }
+ else
+ {
+
  $query    = "INSERT INTO empleado
 			(
 			id, 
@@ -46,10 +63,16 @@ public function agregar($id,$name,$position,$salary,$start_date,$office,$extn){
 		    echo "ok";
 
 
+ }
+
+
+ 
+
+
  } catch (Exception $e) {
 
 
- echo "Error: ".$e->getMessage();
+ echo  "Error: ".$e->getMessage();
 
  	
  }
