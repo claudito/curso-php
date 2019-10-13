@@ -46,7 +46,6 @@ public function agregar($id,$name,$position,$salary,$start_date,$office,$extn){
 		    echo "ok";
 
 
-
  } catch (Exception $e) {
 
 

@@ -1,6 +1,14 @@
 <?php 
 
 
+//include'modelo/Conexion.php';
+//include'modelo/Empleado.php';
+
+include'autoload.php';
+
+$empleado =  new Empleado();
+
+
 $json = file_get_contents('data.json');
 
 //var_dump($json);
