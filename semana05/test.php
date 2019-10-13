@@ -22,9 +22,14 @@ $data    = $array['data'];
 
 //var_dump($data);
 
+
+$permitidos  =  array('Singapore','Tokyo','Edinburgh');
+
 foreach ($data as $key => $value) {
 	
  // echo $value['name'].' - '.$value['position']."<br>";
+
+
 
 $id          = $value['id'];
 $name        = $value['name'];
@@ -44,8 +49,21 @@ $extn        =  $value['extn'];
 //echo $start_date."<br>";
 
 
+
+
+if(in_array($office, $permitidos))
+{
+
+
 //Agregaar Empleados:
 $empleado->agregar($id,$name,$position,$salary,$start_date,$office,$extn);
+
+
+}
+
+
+
+
 
 
 }
