@@ -1,13 +1,11 @@
 <?php 
 
-
 //include'modelo/Conexion.php';
 //include'modelo/Empleado.php';
 
 include'autoload.php';
 
 $empleado =  new Empleado();
-
 
 $json = file_get_contents('data.json');
 
@@ -57,6 +55,10 @@ $extn        =  $value['extn'];
 
 
 //echo $start_date."<br>";
+
+
+//Agregaar Empleados:
+$empleado->agregar($id,$name,$position,$salary,$start_date,$office,$extn);
 
 
 }
