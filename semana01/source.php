@@ -41,6 +41,8 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 //JSON
 $json  = array("data"=>$result); 
 
+//var_dump($json);
+
 echo json_encode($json);
 
 } catch (Exception $e) {
