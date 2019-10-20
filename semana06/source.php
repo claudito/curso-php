@@ -26,7 +26,7 @@ $query = "SELECT
 id,
 name,
 position,
-salary,
+CAST(salary AS DECIMAL(8,2))salary,
 start_date,
 office,
 extn,
