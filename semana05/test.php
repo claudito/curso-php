@@ -23,7 +23,9 @@ $data    = $array['data'];
 //var_dump($data);
 
 
-$permitidos  =  array('Singapore','Tokyo','Edinburgh');
+//$permitidos  =  array('Singapore','Tokyo','Edinburgh');
+
+$permitidos = array('');
 
 foreach ($data as $key => $value) {
 	
@@ -51,7 +53,7 @@ $extn        =  $value['extn'];
 
 
 
-if(in_array($office, $permitidos))
+if(!in_array($office, $permitidos))
 {
 
 
