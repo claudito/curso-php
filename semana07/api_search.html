@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Api Search</title>
+
+ <!-- Bootstrap 4 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+<div class="row">
+	
+<div class="col-md-12">
+	
+<input type="search" id="myInput" class="form-control">
+
+<div class="card">
+	
+<div class="card-header">
+	
+<select name="" id="estado" class="form-control">
+<option value="">Seleccionar</option>
+<option value="Edinburgh">Edinburgh</option>
+<option value="London">London</option>
+<option value="New York">New York</option>
+<option value="San Francisco">San Francisco</option>
+<option value="Sidney">Sidney</option>
+<option value="Singapore">Singapore</option>
+<option value="Tokyo">Tokyo</option>
+</select>
+
+</div>
+
+<div class="card-body">
+
+<div class="table-responsive">
+	
+<table id="consulta"  class="table">
+
+<thead>
+
+<tr>
+<th>id</th>
+<th>name</th>
+<th>position</th>
+<th>salary</th>
+<th>start_date</th>
+<th>office</th>
+<th>extn</th>
+</tr>
+
+</thead>
+
+	
+</table>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+
+<script>
+	
+function loadData(){
+
+
+$(document).ready(function(){
+
+//Inicio Datatable
+var table = $('#consulta').DataTable({
+
+"destroy":true,
+"iDisplayLength":10,
+"bAutoWidth":false,
+"language":{
+
+"url":"https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+
+},
+"sAjaxSource":"source.php",
+"deferRender":true,
+"bProcessing":true,
+"aoColumns":[
+
+
+{mData:'id'},
+{mData:'name'},
+{mData:'position'},
+{mData:'salary'},
+{mData:'start_date'},
+{mData:'office'},
+{mData:'extn'}
+
+]
+
+
+});
+//Fin Datatable
+
+//Api Search
+
+$('#myInput').on( 'keyup', function () {
+
+    //table.search( this.value ).draw();
+
+    table
+        .columns( 2 )
+        .search( this.value )
+        .draw();
+
+
+
+} );
+
+
+$('#estado').on( 'change', function () {
+
+    //table.search( this.value ).draw();
+$('#estado option:selected').each(function (){
+
+valor = $(this).val();
+
+//alert(valor);
+
+table.search( valor ).draw();
+
+
+});
+ 
+} );
+
+
+
+});
+
+
+
+}
+
+
+loadData();
+
+
+</script>
+</body>
+</html>

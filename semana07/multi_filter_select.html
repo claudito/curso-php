@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Multi Filter Select</title>
+
+ <!-- Bootstrap 4 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+<div class="row">
+	
+<div class="col-md-12">
+	
+<table id="consulta"  class="table" style="font-size: 12px">
+
+<thead>
+
+<tr>
+<th>id</th>
+<th>name</th>
+<th>position</th>
+<th>salary</th>
+<th>start_date</th>
+<th>office</th>
+<th>extn</th>
+</tr>
+
+</thead>
+
+
+
+<tfoot>
+
+<tr>
+<th>id</th>
+<th>name</th>
+<th>position</th>
+<th>salary</th>
+<th>start_date</th>
+<th>office</th>
+<th>extn</th>
+</tr>
+
+</tfoot>
+
+	
+</table>
+
+
+</div>
+
+
+</div>
+</div>
+
+<script>
+	
+function loadData(){
+
+
+$(document).ready(function(){
+
+ $('#consulta').DataTable( {
+
+     "destroy":true,
+"iDisplayLength":50,
+"bAutoWidth":false,
+"language":{
+
+"url":"https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+
+},
+"sAjaxSource":"source.php",
+"deferRender":true,
+"bProcessing":true,
+"aoColumns":[
+
+
+{mData:'id'},
+{mData:'name'},
+{mData:'position'},
+{mData:'salary'},
+{mData:'start_date'},
+{mData:'office'},
+{mData:'extn'}
+
+],
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    //.appendTo( $(column.footer()).empty() )
+                    .appendTo( $(column.header()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+
+                      //Evitar ordenamiento al momento de hacer click
+						$( select ).click( function(e) {
+
+					    e.stopPropagation();
+						//e.stopImmediatePropagation();
+
+						});
+                
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+
+
+
+
+
+            } );
+        }
+    } );
+
+
+
+});
+
+
+
+}
+
+
+loadData();
+
+
+</script>
+</body>
+</html>
