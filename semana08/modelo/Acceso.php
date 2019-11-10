@@ -32,7 +32,7 @@ $query    =  "SELECT
   return array(
 
    'title' => 'Bienvenido',
-   'text'  => $result[0]['nombres'],
+   'text'  => $result[0]['nombres'].' '.$result[0]['apellidos'],
    'type'  => 'success'
 
   );
