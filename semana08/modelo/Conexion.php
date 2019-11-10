@@ -10,9 +10,9 @@ try {
 	
 $conexion = new PDO(
 
-' mysql:host='.SERVER.';dbname='.BD.' ',
-' '.USER.' ',//usuario
-' '.PASS.' ',//contraseña
+'mysql:host='.SERVER.';dbname='.BD.'',
+''.USER.'',//usuario
+''.PASS.'',//contraseña
 array(PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES UTF8')
 
 );
