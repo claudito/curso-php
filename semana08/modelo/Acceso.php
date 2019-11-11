@@ -28,6 +28,12 @@ $query    =  "SELECT
 
  if(count($result)>0)
  {
+
+  session_start();
+  
+  $_SESSION[KEY.'id']      = $result[0]['id'];
+  $_SESSION[KEY.'usuario'] = $result[0]['nombres'].' '.$result[0]['apellidos'];
+
    
   return array(
 

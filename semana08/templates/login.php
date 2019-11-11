@@ -55,7 +55,7 @@ Inicio de Sesión
     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i> </span>
   </div>
 
-  <input type="text" name="user" class="form-control" placeholder="Usuario" required>
+  <input type="text" name="user" class="form-control" placeholder="Usuario" required autofocus>
 
 </div>
 
@@ -121,7 +121,6 @@ $(document).on('submit','#login',function(e){
  },
  success:function(data){
 
-
   swal({
 
    title : data.title,
@@ -132,6 +131,16 @@ $(document).on('submit','#login',function(e){
 
 
   });
+
+ 
+    setInterval(function(){
+
+  location.reload();
+
+  },3000);
+
+
+
 
 
  }
